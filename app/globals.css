@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary-purple: 107 70 193;
+    --color-primary-blue: 37 99 235;
+    --color-accent-teal: 20 184 166;
+    --color-accent-green: 16 185 129;
+  }
+
+  body {
+    @apply text-text-dark antialiased;
+  }
+}
+
+@layer components {
+  /* Glass morphism card */
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-glass;
+  }
+
+  /* Gradient backgrounds */
+  .gradient-bg {
+    @apply bg-gradient-to-br from-primary-purple via-primary-blue to-accent-teal;
+  }
+
+  .hero-bg {
+    @apply bg-gradient-to-br from-primary-purple/90 via-primary-blue/80 to-accent-teal/70;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-2xl shadow-lg p-6 transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:shadow-2xl hover:-translate-y-1;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-purple to-accent-teal text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-glow transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-white/80 backdrop-blur-sm text-text-dark font-semibold px-6 py-3 rounded-xl border-2 border-primary-purple/20 hover:border-primary-purple/50 transition-all duration-300;
+  }
+
+  /* Input styles */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-purple focus:border-transparent transition-all;
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-purple {
+    @apply bg-primary-purple/10 text-primary-purple;
+  }
+
+  .badge-blue {
+    @apply bg-primary-blue/10 text-primary-blue;
+  }
+
+  .badge-teal {
+    @apply bg-accent-teal/10 text-accent-teal;
+  }
+
+  .badge-green {
+    @apply bg-accent-green/10 text-accent-green;
+  }
+}
+
+@layer utilities {
+  /* Text gradients */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-purple via-primary-blue to-accent-teal bg-clip-text text-transparent;
+  }
+
+  /* Scrollbar styles */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Custom focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-purple focus:ring-offset-2;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(107, 70, 193, 0.3);
+  color: inherit;
+}
+
+/* Custom animations */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 1000px 100%;
+}
