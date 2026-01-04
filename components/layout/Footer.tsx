@@ -7,6 +7,12 @@ import {
   MapPinIcon,
   PhoneIcon,
 } from '@heroicons/react/24/outline';
+import {
+  Square2StackIcon as InstagramIcon,
+  UserGroupIcon as FacebookIcon,
+  ChatBubbleLeftRightIcon as TwitterIcon,
+  BriefcaseIcon as LinkedInIcon,
+} from '@heroicons/react/24/outline';
 
 const footerLinks = {
   about: [
@@ -28,10 +34,10 @@ const footerLinks = {
     { name: 'Support', href: '/resources/support' },
   ],
   social: [
-    { name: 'Instagram', href: '#', icon: '📷' },
-    { name: 'Facebook', href: '#', icon: '👥' },
-    { name: 'Twitter', href: '#', icon: '🐦' },
-    { name: 'LinkedIn', href: '#', icon: '💼' },
+    { name: 'Instagram', href: '#', icon: InstagramIcon },
+    { name: 'Facebook', href: '#', icon: FacebookIcon },
+    { name: 'Twitter', href: '#', icon: TwitterIcon },
+    { name: 'LinkedIn', href: '#', icon: LinkedInIcon },
   ],
 };
 
@@ -55,11 +61,13 @@ export default function Footer() {
               Strengthening unity, connection, and participation among Young Adults (18-35) 
               across Europe through meaningful events, community, and shared experiences.
             </p>
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-purple to-accent-teal flex items-center justify-center">
-                <span className="text-white font-bold">R</span>
-              </div>
-              <span className="text-lg font-bold bg-gradient-to-r from-primary-purple to-accent-teal bg-clip-text text-transparent">
+            <div className="flex items-center gap-2">
+              <img
+                src="/logos/RG_Avatar_Purple.svg"
+                alt="RisingGen Logo"
+                className="h-8 w-auto"
+              />
+              <span className="text-lg font-bold text-text-dark">
                 RisingGen
               </span>
             </div>
@@ -111,18 +119,21 @@ export default function Footer() {
             
             {/* Social Links */}
             <div className="flex space-x-3 mb-4">
-              {footerLinks.social.map((social) => (
-                <motion.a
-                  key={social.name}
-                  href={social.href}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200 flex items-center justify-center text-xl hover:shadow-md transition-all"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+              {footerLinks.social.map((social) => {
+                const IconComponent = social.icon;
+                return (
+                  <motion.a
+                    key={social.name}
+                    href={social.href}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-10 h-10 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200 flex items-center justify-center hover:shadow-md transition-all hover:bg-primary-purple hover:text-white"
+                    aria-label={social.name}
+                  >
+                    <IconComponent className="h-5 w-5" />
+                  </motion.a>
+                );
+              })}
             </div>
 
             {/* Newsletter Signup */}
@@ -151,7 +162,7 @@ export default function Footer() {
         {/* Language Support Section */}
         <div className="mt-12 pt-8 border-t border-gray-200">
           <p className="text-sm text-gray-600 mb-3">
-            <span className="font-semibold">🌍 Available in 15+ Languages:</span>
+            <span className="font-semibold">Available in 15+ Languages:</span>
           </p>
           <p className="text-xs text-gray-500">
             {supportedLanguages.join(' • ')}

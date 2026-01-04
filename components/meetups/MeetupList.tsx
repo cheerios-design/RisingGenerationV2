@@ -6,17 +6,24 @@ import {
   MapPinIcon,
   UserGroupIcon,
   ClockIcon,
+  BuildingLibraryIcon,
+  GlobeAltIcon,
+  SparklesIcon,
+  BookOpenIcon,
+  MusicalNoteIcon,
+  AcademicCapIcon,
+  TrophyIcon,
 } from '@heroicons/react/24/outline';
 
-// Meetup type icons (using emojis)
-const meetupTypeIcons: Record<string, string> = {
-  temple: '⛪',
-  travel: '✈️',
-  social: '🎉',
-  spiritual: '📖',
-  singing: '🎵',
-  focus: '📚',
-  sport: '⚽',
+// Meetup type icons
+const meetupTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  temple: BuildingLibraryIcon,
+  travel: GlobeAltIcon,
+  social: SparklesIcon,
+  spiritual: BookOpenIcon,
+  singing: MusicalNoteIcon,
+  focus: AcademicCapIcon,
+  sport: TrophyIcon,
 };
 
 const meetupTypeColors: Record<string, string> = {
@@ -153,7 +160,10 @@ export default function MeetupList({ meetups = mockMeetups }: MeetupListProps) {
                     meetupTypeColors[meetup.type]
                   } text-white shadow-lg`}
                 >
-                  <span className="text-2xl">{meetupTypeIcons[meetup.type]}</span>
+                  {(() => {
+                    const IconComponent = meetupTypeIcons[meetup.type];
+                    return <IconComponent className="h-6 w-6" />;
+                  })()}
                   <span className="font-semibold capitalize">{meetup.type}</span>
                 </div>
                 {isFull && (

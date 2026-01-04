@@ -38,12 +38,14 @@ export default function Navigation() {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2"
+              className="flex items-center gap-3"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-purple to-accent-teal flex items-center justify-center">
-                <span className="text-white font-bold text-xl">R</span>
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-primary-purple to-accent-teal bg-clip-text text-transparent">
+              <img
+                src="/logos/RG_Avatar_Purple.svg"
+                alt="RisingGen Logo"
+                className="h-10 w-auto"
+              />
+              <span className="text-xl font-bold text-text-dark hidden sm:inline">
                 RisingGen
               </span>
             </motion.div>
@@ -129,11 +131,13 @@ export default function Navigation() {
               <div className="flex items-center justify-between">
                 <Link href="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
                   <span className="sr-only">RisingGen</span>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-purple to-accent-teal flex items-center justify-center">
-                      <span className="text-white font-bold text-xl">R</span>
-                    </div>
-                    <span className="text-xl font-bold bg-gradient-to-r from-primary-purple to-accent-teal bg-clip-text text-transparent">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src="/logos/RG_Avatar_Purple.svg"
+                      alt="RisingGen Logo"
+                      className="h-10 w-auto"
+                    />
+                    <span className="text-xl font-bold text-text-dark">
                       RisingGen
                     </span>
                   </div>

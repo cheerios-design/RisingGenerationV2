@@ -11,10 +11,24 @@ export const metadata: Metadata = {
   description: 'A platform for Young Adults (18-35) in Europe to connect, participate, and grow together.',
   keywords: ['young adults', 'europe', 'community', 'events', 'meetups', 'friendship'],
   authors: [{ name: 'RisingGen Team' }],
+  manifest: '/site.webmanifest',
+  icons: {
+    icon: [
+      { url: '/favicons/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/favicons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/favicons/favicon.svg' },
+    ],
+  },
   openGraph: {
     title: 'RisingGen - Connect, Grow, Unite',
     description: 'Strengthening unity and connection among Young Adults across Europe',
     type: 'website',
+    images: ['/logos/RG_Avatar_Purple.svg'],
   },
 };
 
