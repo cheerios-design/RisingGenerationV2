@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Dialog, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
@@ -27,9 +27,34 @@ const languages = [
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [isInHeroSection, setIsInHeroSection] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Get the height of the hero section (viewport height)
+      const heroHeight = window.innerHeight;
+      const scrollPosition = window.scrollY;
+      
+      // Track if user has scrolled
+      setIsScrolled(scrollPosition > 50);
+      
+      // White links only while scrolling within hero (not at the very top)
+      setIsInHeroSection(scrollPosition > 50 && scrollPosition < heroHeight - 100);
+    };
+
+    // Initial check
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const textColor = isInHeroSection ? 'text-white' : 'text-text-dark';
+  const hoverColor = isInHeroSection ? 'hover:text-white/80' : 'hover:text-primary-purple';
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass-card">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-card' : 'bg-transparent'}`}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
         {/* Logo */}
         <div className="flex lg:flex-1">
@@ -45,7 +70,7 @@ export default function Navigation() {
                 alt="RisingGen Logo"
                 className="h-10 w-auto"
               />
-              <span className="text-xl font-bold text-text-dark hidden sm:inline">
+              <span className="text-xl font-bold hidden sm:inline" style={{ color: isInHeroSection ? 'white' : undefined }}>
                 RisingGen
               </span>
             </motion.div>
@@ -56,7 +81,7 @@ export default function Navigation() {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-text-dark"
+            className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 ${textColor}`}
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open main menu"
           >
@@ -70,7 +95,7 @@ export default function Navigation() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold leading-6 text-text-dark hover:text-primary-purple transition-colors relative group"
+              className={`text-sm font-semibold leading-6 ${textColor} ${hoverColor} transition-colors relative group`}
             >
               {item.name}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-purple to-accent-teal group-hover:w-full transition-all duration-300" />
@@ -83,7 +108,7 @@ export default function Navigation() {
           {/* Language selector */}
           <div className="relative">
             <button
-              className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-text-dark hover:text-primary-purple transition-colors"
+              className={`flex items-center gap-x-1 text-sm font-semibold leading-6 ${textColor} ${hoverColor} transition-colors`}
               aria-label="Select language"
             >
               <GlobeAltIcon className="h-5 w-5" aria-hidden="true" />

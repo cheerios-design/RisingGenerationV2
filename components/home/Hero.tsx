@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import Galaxy from './Galaxy';
 
 export default function Hero() {
   const [stats, setStats] = useState({
@@ -52,36 +53,24 @@ export default function Hero() {
 
   return (
     <div className="relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 hero-bg -z-10">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+      {/* Galaxy Background */}
+      <div className="absolute inset-0 -z-10">
+        <Galaxy 
+          mouseRepulsion={false}
+          mouseInteraction={true}
+          density={0.5}
+          glowIntensity={0.5}
+          saturation={0}
+          hueShift={140}
+          twinkleIntensity={0.6}
+          rotationSpeed={0.1}
+          repulsionStrength={2}
+          autoCenterRepulsion={0}
+          starSpeed={0.5}
+          speed={1}
+          transparent={false}
+        />
       </div>
-
-      {/* Animated background shapes */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          rotate: [0, 90, 0],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="absolute top-20 right-20 w-96 h-96 bg-primary-purple/20 rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.3, 1],
-          rotate: [0, -90, 0],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="absolute bottom-20 left-20 w-96 h-96 bg-accent-teal/20 rounded-full blur-3xl"
-      />
 
       <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
         <motion.div

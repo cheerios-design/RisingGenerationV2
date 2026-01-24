@@ -124,9 +124,9 @@ export default function FriendshipMatching() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative pb-32">
       {/* Card Stack Container */}
-      <div className="relative h-[600px] flex items-center justify-center">
+      <div className="relative h-[600px] flex items-center justify-center mb-8">
         {/* Show next card in background */}
         {profiles[currentIndex + 1] && (
           <div className="absolute w-full max-w-md">
@@ -162,7 +162,7 @@ export default function FriendshipMatching() {
               </motion.div>
               <motion.div
                 style={{ opacity: useTransform(x, [-100, 0], [1, 0]) }}
-                className="absolute top-8 left-8 bg-red-500 text-white px-6 py-3 rounded-xl font-bold text-xl -rotate-12 shadow-lg"
+                className="absolute top-12 left-8 bg-red-500 text-white px-6 py-3 rounded-xl font-bold text-xl -rotate-12 shadow-lg"
               >
                 PASS
               </motion.div>
@@ -229,7 +229,7 @@ export default function FriendshipMatching() {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-center items-center gap-6 mt-8">
+      <div className="flex justify-center items-center gap-6">
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
