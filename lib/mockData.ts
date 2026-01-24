@@ -15,7 +15,11 @@ export const mockEvents: Event[] = [
       venue: 'Berlin Conference Center',
       city: 'Berlin',
       country: 'Germany',
-      stake: 'Berlin Stake'
+      stake: 'Berlin Stake',
+      coordinates: {
+        lat: 52.5200,
+        lng: 13.4050
+      }
     },
     languages: ['English', 'German', 'French'],
     ageGroups: ['18-25', '26-35'],
@@ -37,7 +41,11 @@ export const mockEvents: Event[] = [
     location: {
       venue: 'Paris Community Hall',
       city: 'Paris',
-      country: 'France'
+      country: 'France',
+      coordinates: {
+        lat: 48.8566,
+        lng: 2.3522
+      }
     },
     languages: ['French', 'English'],
     ageGroups: ['18-25', '26-35'],

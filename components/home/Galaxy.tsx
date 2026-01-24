@@ -15,7 +15,7 @@ void main() {
 `;
 
 const fragmentShader = `
-precision highp float;
+precision high float;
 
 uniform float uTime;
 uniform vec3 uResolution;

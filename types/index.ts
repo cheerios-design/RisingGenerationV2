@@ -12,6 +12,10 @@ export interface Event {
     city: string;
     country: string;
     stake?: string;
+    coordinates?: {
+      lat: number;
+      lng: number;
+    };
   };
   languages: string[];
   ageGroups: string[];

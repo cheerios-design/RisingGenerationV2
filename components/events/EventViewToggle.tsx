@@ -5,9 +5,10 @@ import {
   ListBulletIcon,
   Squares2X2Icon,
   CalendarDaysIcon,
+  MapIcon,
 } from '@heroicons/react/24/outline';
 
-type ViewMode = 'list' | 'grid' | 'calendar';
+type ViewMode = 'list' | 'grid' | 'calendar' | 'map';
 
 interface EventViewToggleProps {
   currentView: ViewMode;
@@ -22,6 +23,7 @@ export default function EventViewToggle({
     { mode: 'list' as ViewMode, icon: ListBulletIcon, label: 'List' },
     { mode: 'grid' as ViewMode, icon: Squares2X2Icon, label: 'Grid' },
     { mode: 'calendar' as ViewMode, icon: CalendarDaysIcon, label: 'Calendar' },
+    { mode: 'map' as ViewMode, icon: MapIcon, label: 'Map' },
   ];
 
   return (

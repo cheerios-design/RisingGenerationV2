@@ -2,11 +2,23 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import EventCalendar from '@/components/events/EventCalendar';
 import EventFilters from '@/components/events/EventFilters';
 import EventViewToggle from '@/components/events/EventViewToggle';
+import { mockEvents } from '@/lib/mockData';
 
-type ViewMode = 'list' | 'grid' | 'calendar';
+// Dynamically import EventMap to avoid SSR issues with Leaflet
+const EventMap = dynamic(() => import('@/components/events/EventMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[500px] bg-gray-100 rounded-lg flex items-center justify-center">
+      <div className="text-gray-500">Loading map...</div>
+    </div>
+  ),
+});
+
+type ViewMode = 'list' | 'grid' | 'calendar' | 'map';
 
 export default function EventsPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('list');
@@ -64,6 +76,23 @@ export default function EventsPage() {
           {viewMode === 'calendar' && (
             <div className="text-center py-12 text-gray-500">
               Calendar view coming soon...
+            </div>
+          )}
+          {viewMode === 'map' && (
+            <div>
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Event Locations</h2>
+                <p className="text-gray-600">
+                  Explore events across Europe on the interactive map. Click on markers to see event details.
+                </p>
+              </div>
+              <EventMap 
+                events={mockEvents}
+                onEventClick={(eventId) => {
+                  console.log('Event clicked:', eventId);
+                  // You can add navigation or modal logic here
+                }}
+              />
             </div>
           )}
         </motion.div>
